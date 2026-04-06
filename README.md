@@ -154,6 +154,7 @@ python inference.py \
 ### 3. Spatial Editing Reference
 
 JoyAI-Image supports three spatial editing prompt patterns: **Object Move**, **Object Rotation**, and **Camera Control**. For the most stable behavior, we recommend following the prompt templates below as closely as possible.
+For more information (including data curation and evaluation strategies), please refer to [SpatialEdit](https://github.com/EasonXiao-888/SpatialEdit).
 
 #### 3.1 Object Move
 
@@ -189,14 +190,9 @@ Rotate the <object> to show the <view> side view.
 
 **Supported `<view>` values:**
 
-* `front`
-* `right`
-* `left`
-* `rear`
-* `front right`
-* `front left`
-* `rear right`
-* `rear left`
+```
+front, right, left, rear, front right, front left, rear right, rear left
+```
 
 **Rules:**
 
@@ -250,6 +246,41 @@ Move the camera.
 - Camera zoom: unchanged.
 - Keep the 3D scene static; only change the viewpoint.
 ```
+
+#### 3.4 Application
+
+**3D Reconstruction:**
+
+The first and third examples show point clouds with only a single given viewpoint. The second and fourth examples are augmented by [SpatialEdit](https://github.com/EasonXiao-888/SpatialEdit), which synthesizes richer spatial observations from the sparse input view.
+
+<p align="center">
+  <img src="assets/application/3dpoint/01.gif" width="23%" />
+  <img src="assets/application/3dpoint/02.gif" width="23%" />
+  <img src="assets/application/3dpoint/11.gif" width="23%" />
+  <img src="assets/application/3dpoint/12.gif" width="23%" />
+</p>
+
+**Conditional-frames Based Video Generation:**
+
+Given the first frame, [SpatialEdit](https://github.com/EasonXiao-888/SpatialEdit) first generates the final frame of the video, and a video generation model then creates a smooth rotational transition between them while maintaining background consistency.
+
+<p align="center">
+  <img src="assets/application/camera/input.png" width="31%" />
+  <img src="assets/application/camera/output.png" width="31%" />
+  <img src="assets/application/camera/video.gif" width="31%" />
+</p>
+<p align="center">
+  <img src="assets/application/moving/input.png" width="31%" />
+  <img src="assets/application/moving/output.png" width="31%" />
+  <img src="assets/application/moving/video.gif" width="31%" />
+</p>
+<p align="center">
+  <img src="assets/application/rotation/input.png" width="31%" />
+  <img src="assets/application/rotation/output.png" width="31%" />
+  <img src="assets/application/rotation/video.gif" width="31%" />
+</p>
+
+#### 3.5 Demo Display
 
 
 ## ⚖️ License Agreement
