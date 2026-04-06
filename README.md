@@ -282,6 +282,8 @@ Given the first frame, [SpatialEdit](https://github.com/EasonXiao-888/SpatialEdi
 
 #### 3.5 Demo Display
 
+https://github.com/user-attachments/assets/54cb2fcc-0646-44e9-a002-21a7228501f3
+
 
 ## ⚖️ License Agreement
 
