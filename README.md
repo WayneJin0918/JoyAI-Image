@@ -5,6 +5,7 @@
 [![Report PDF](https://img.shields.io/badge/Report-PDF-red)](https://joyai-image.s3.cn-north-1.jdcloud-oss.com/JoyAI-Image.pdf)
 [![Project](https://img.shields.io/badge/Project-JoyAI--Image-333399)](https://github.com/jd-opensource/JoyAI-Image)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Checkpoint-JoyAI--Image--Edit-yellow)](https://huggingface.co/jdopensource/JoyAI-Image-Edit)&#160;
+[![ModelScope](https://img.shields.io/badge/%F0%9F%A4%96%20ModelScope-JoyAI--Image--Edit--1.0-624aff)](https://modelscope.cn/models/jd-opensource/JoyAI-Image-Edit)&#160;
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 </div>
