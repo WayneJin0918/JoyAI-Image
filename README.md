@@ -226,11 +226,7 @@ Move the camera.
 
 * `{y_rotation}` specifies the yaw rotation angle in degrees.
 * `{p_rotation}` specifies the pitch rotation angle in degrees.
-* `Camera zoom` must be one of:
-
-  * `in`
-  * `out`
-  * `unchanged`
+* `Camera zoom` must be one of: `in`, `out`,`unchanged`
 * The last line is important: it explicitly tells the model to preserve the 3D scene content and geometry, and only adjust the camera viewpoint.
 
 **Examples:**
