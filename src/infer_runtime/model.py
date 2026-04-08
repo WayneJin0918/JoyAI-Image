@@ -104,11 +104,56 @@ class EditModel:
         return Image.fromarray(image_tensor.permute(1, 2, 0).numpy())
 
 
+def check_dependency_versions() -> None:
+    try:
+        import transformers
+    except ImportError as e:
+        raise RuntimeError(
+            'transformers is not installed. '
+            'Required version: >=4.57.0 and <4.58.0'
+        ) from e
+
+    try:
+        import diffusers
+    except ImportError as e:
+        raise RuntimeError(
+            'diffusers is not installed. '
+            'Required version: ==0.36.0'
+        ) from e
+
+    try:
+        from packaging.version import Version
+    except ImportError as e:
+        raise RuntimeError(
+            'packaging is required for version checks. '
+            'Please install it with: pip install packaging'
+        ) from e
+
+    transformers_version = Version(transformers.__version__)
+    diffusers_version = Version(diffusers.__version__)
+
+    min_transformers = Version('4.57.0')
+    max_transformers = Version('4.58.0')
+    required_diffusers = Version('0.36.0')
+
+    if not (min_transformers <= transformers_version < max_transformers):
+        raise RuntimeError(
+            f'Unsupported transformers version: {transformers.__version__}. '
+            f'Required: >=4.57.0 and <4.58.0'
+        )
+
+    if diffusers_version != required_diffusers:
+        raise RuntimeError(
+            f'Unsupported diffusers version: {diffusers.__version__}. '
+            f'Required: ==0.36.0'
+        )
+
 def build_model(
     settings: InferSettings,
     device: torch.device | None = None,
     hsdp_shard_dim_override: int | None = None,
 ) -> EditModel:
+    check_dependency_versions()
     seed_everything(settings.default_seed)
     if device is None:
         device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
