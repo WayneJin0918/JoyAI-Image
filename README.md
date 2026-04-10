@@ -12,6 +12,8 @@
 </div>
 
 ## 🔥🔥🔥 News!!
+* 2026.04.10: 🎉 JoyAI-Image-Edit now supports ComfyUI! Check out the integration and usage in our [ComfyUI](https://github.com/jd-opensource/JoyAI-Image/tree/main/joyai_image_comfyui).
+* 2026.04.10: 🎉 We release the Spatial-Edit training dataset and benchmark: [JoyAI-Image-SpatialEdit](https://huggingface.co/datasets/jdopensource/JoyAI-Image-SpatialEdit) and [JoyAI-Image-SpatialEdit-Bench](https://huggingface.co/datasets/jdopensource/JoyAI-Image-SpatialEdit-Bench).
 * 2026.04.06: 🎉 The demo for spatial editing is released at [Demo](https://huggingface.co/spaces/stevengrove/JoyAI-Image-Edit-Space).
 * 2026.04.02: 🎉 We release the JoyAI-Image-Edit weights. Please Check at [Huggingface](https://huggingface.co/jdopensource/JoyAI-Image-Edit).
 
@@ -124,7 +126,7 @@ python inference_und.py \
 
 ```bash
 python inference.py \
-  --ckpt-root /path/to/ckpts_infer \
+  --ckpt-root /path/to/ckpts \
   --prompt "Turn the plate blue" \
   --image test_images/test_1.jpg \
   --output outputs/result.png \
@@ -142,7 +144,7 @@ python inference.py \
 | `--prompt` | str | *required* | Edit instruction or T2I prompt |
 | `--image` | str | None | Input image path (required for editing, omit for T2I) |
 | `--output` | str | `example.png` | Output image path |
-| `--steps` | int | 50 | Denoising steps |
+| `--steps` | int | 30 | Denoising steps |
 | `--guidance-scale` | float | 4.0 | Classifier-free guidance scale |
 | `--seed` | int | 42 | Random seed for reproducibility |
 | `--neg-prompt` | str | `""` | Negative prompt |

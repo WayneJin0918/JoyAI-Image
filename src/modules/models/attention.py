@@ -82,38 +82,25 @@ def attention(
         k (torch.Tensor): Key tensor of shape [batch_size, seq_len, num_heads, head_dim]
         v (torch.Tensor): Value tensor of shape [batch_size, seq_len, num_heads
     """
-    if backend == "auto":
-        backend = get_preferred_attention_backend()
-    # Fall back to torch_spda when flash_attn was requested but unavailable
-    if backend == "flash_attn" and flash_attn_varlen_func is None:
-        backend = "torch_spda"
-    assert backend in [
-        "torch_spda", "flash_attn"], f"Unsupported attention backend: {backend}"
+    assert backend in ["flash_attn"], f"Unsupported attention backend: {backend}"
     assert q.dim() == 4 and k.dim() == 4 and v.dim() == 4, "Input tensors must be 4D"
     batch_size = q.shape[0]
-    if backend == "torch_spda":
-        q = rearrange(q, "b l h c -> b h l c")
-        k = rearrange(k, "b l h c -> b h l c")
-        v = rearrange(v, "b l h c -> b h l c")
-        output = torch.nn.functional.scaled_dot_product_attention(
-            q, k, v, is_causal=causal, scale=softmax_scale)
-        output = rearrange(output, "b h l c -> b l h c")
-    elif backend == "flash_attn":
-        cu_seqlens_q = attn_kwargs['cu_seqlens_q']
-        cu_seqlens_kv = attn_kwargs['cu_seqlens_kv']
-        max_seqlen_q = attn_kwargs['max_seqlen_q']
-        max_seqlen_kv = attn_kwargs['max_seqlen_kv']
-        x = flash_attn_varlen_func(
-            q.view(q.shape[0] * q.shape[1], *q.shape[2:]),
-            k.view(k.shape[0] * k.shape[1], *k.shape[2:]),
-            v.view(v.shape[0] * v.shape[1], *v.shape[2:]),
-            cu_seqlens_q,
-            cu_seqlens_kv,
-            max_seqlen_q,
-            max_seqlen_kv,
-        )
-        output = x.view(
-            batch_size, max_seqlen_q, x.shape[-2], x.shape[-1]
-        )
+
+    cu_seqlens_q = attn_kwargs['cu_seqlens_q']
+    cu_seqlens_kv = attn_kwargs['cu_seqlens_kv']
+    max_seqlen_q = attn_kwargs['max_seqlen_q']
+    max_seqlen_kv = attn_kwargs['max_seqlen_kv']
+    x = flash_attn_varlen_func(
+        q.view(q.shape[0] * q.shape[1], *q.shape[2:]),
+        k.view(k.shape[0] * k.shape[1], *k.shape[2:]),
+        v.view(v.shape[0] * v.shape[1], *v.shape[2:]),
+        cu_seqlens_q,
+        cu_seqlens_kv,
+        max_seqlen_q,
+        max_seqlen_kv,
+    )
+    output = x.view(
+        batch_size, max_seqlen_q, x.shape[-2], x.shape[-1]
+    )
 
     return output
