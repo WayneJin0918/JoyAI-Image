@@ -20,7 +20,7 @@
 - 2026.04.10: 🎉 JoyAI-Image-Edit now supports ComfyUI! Check out the integration and usage in our [ComfyUI](https://github.com/jd-opensource/JoyAI-Image/tree/main/joyai_image_comfyui).
 - 2026.04.10: 🎉 We release the Spatial-Edit training dataset and benchmark: [JoyAI-Image-SpatialEdit](https://huggingface.co/datasets/jdopensource/JoyAI-Image-SpatialEdit) and [JoyAI-Image-SpatialEdit-Bench](https://huggingface.co/datasets/jdopensource/JoyAI-Image-SpatialEdit-Bench).If you find our work helpful, please consider giving our repository a star—your support is greatly appreciated.
 - 2026.04.06: 🎉 The demo for spatial editing is available at [Demo](https://huggingface.co/spaces/stevengrove/JoyAI-Image-Edit-Space), and the demo for general editing can be accessed at [Huggingface Demo](https://huggingface.co/spaces/stevengrove/JoyAI-Image-Edit). 
-- 2026.04.02: 🎉 We release the JoyAI-Image-Edit weights. Please Check at [Huggingface](https://huggingface.co/jdopensource/JoyAI-Image-Edit).
+- 2026.04.02: 🎉 We release the JoyAI-Image-Edit weights. Please Check at [Huggingface](https://huggingface.co/jdopensource/JoyAI-Image-Edit) and [ModelScope](https://modelscope.cn/models/jd-opensource/JoyAI-Image-Edit).
 
 ## 🐶 JoyAI-Image
 
